@@ -1,0 +1,475 @@
+/* =========================================================
+   WorkSy Home — Incremental Styles with STEP markers
+   Paste into: src/app/home/home.component.scss
+   After each step, save + hard refresh (Ctrl+F5).
+   If something breaks, note the STEP number.
+   ========================================================= */
+
+/* STEP 1 — Containers & buttons (foundation) */
+:host {
+    display: block;
+}
+
+.container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-light {
+    background: #fff;
+    border-color: var(--ws-border);
+}
+
+.btn-primary {
+    background: var(--ws-primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--ws-primary-600);
+}
+
+.btn-lg {
+    padding: 14px 20px;
+    font-size: 1.05rem;
+}
+
+/* STEP 2 — Header, brand & nav */
+.ws-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, .8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ws-border);
+}
+
+.ws-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--ws-text);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav a {
+    color: var(--ws-text);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav a.active {
+    color: var(--ws-primary);
+}
+
+/* STEP 3 — Hero section (structure only) */
+.hero {
+    padding: 48px 0 24px;
+    background: var(--ws-bg);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 24px;
+    align-items: center;
+}
+
+.hero-copy h1 {
+    font-size: 2.4rem;
+    line-height: 1.15;
+    margin: 0 0 10px;
+}
+
+.hero-copy .accent {
+    color: var(--ws-primary);
+}
+
+.hero-copy p {
+    color: var(--ws-muted);
+    margin: 0 0 20px;
+}
+
+/* STEP 4 — Search bar */
+.search {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid var(--ws-border);
+    box-shadow: 0 10px 30px rgba(16, 18, 35, .06);
+}
+
+.search .field {
+    position: relative;
+}
+
+.search .icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+}
+
+.search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px 0 36px;
+    border-radius: 12px;
+    border: 1px solid var(--ws-border);
+    outline: none;
+}
+
+.search input:focus {
+    border-color: var(--ws-primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, .15);
+}
+
+.quick-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.tag {
+    background: #fff;
+    border: 1px solid var(--ws-border);
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+/* STEP 5 — Hero art area & stat cards */
+.hero-art {
+    position: relative;
+    min-height: 300px;
+}
+
+.hero-art img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card.stat {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    background: #fff;
+    border: 1px solid var(--ws-border);
+    border-radius: 14px;
+    padding: 12px 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+}
+
+.card.stat+.card.stat {
+    top: auto;
+    bottom: 16px;
+}
+
+.stat-num {
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.stat-label {
+    font-size: .8rem;
+    color: var(--ws-muted);
+}
+
+/* STEP 6 — Section header helper */
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.section-head.center {
+    justify-content: center;
+}
+
+.section-head h2 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.section-head .link {
+    text-decoration: none;
+    color: var(--ws-primary);
+    font-weight: 600;
+}
+
+/* STEP 7 — Categories grid */
+.categories {
+    padding: 28px 0;
+}
+
+.categories .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.cat-card {
+    background: var(--ws-card);
+    border: 1px solid var(--ws-border);
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--ws-text);
+    box-shadow: 0 6px 18px rgba(16, 18, 35, .04);
+    transition: transform .2s;
+}
+
+.cat-card:hover {
+    transform: translateY(-2px);
+}
+
+.cat-card .icon {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.cat-card .name {
+    font-weight: 700;
+}
+
+/* STEP 8 — Featured workers */
+.featured {
+    padding: 16px 0 28px;
+}
+
+.workers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.worker-card {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 12px;
+    background: var(--ws-card);
+    border: 1px solid var(--ws-border);
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 6px 18px rgba(16, 18, 35, .04);
+}
+
+.avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    background-color: #f0f0f0;
+}
+
+.info .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info h3 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.rating {
+    background: #fffbeb;
+    border: 1px solid #f59e0b55;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.meta {
+    margin: 4px 0 8px;
+    color: var(--ws-muted);
+    font-size: .9rem;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price {
+    font-weight: 800;
+}
+
+.price span {
+    font-weight: 400;
+    color: var(--ws-muted);
+}
+
+/* STEP 9 — How it works */
+.how {
+    padding: 28px 0;
+    background: linear-gradient(180deg, #ffffff 0, #f9fafb 100%);
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.step {
+    background: var(--ws-card);
+    border: 1px solid var(--ws-border);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+}
+
+.bubble {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ws-primary);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+/* STEP 10 — Testimonials */
+.testimonials {
+    padding: 28px 0;
+}
+
+.quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.quote {
+    background: var(--ws-card);
+    border: 1px solid var(--ws-border);
+    border-radius: 16px;
+    padding: 16px;
+    font-size: .98rem;
+    box-shadow: 0 6px 18px rgba(16, 18, 35, .04);
+}
+
+.quote footer {
+    margin-top: 8px;
+    color: var(--ws-muted);
+}
+
+/* STEP 11 — CTA */
+.cta {
+    padding: 28px 0 40px;
+}
+
+.cta-box {
+    background: linear-gradient(90deg, var(--ws-primary) 0, #4c46d4 100%);
+    color: #fff;
+    padding: 24px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* STEP 12 — Footer */
+.ws-footer {
+    border-top: 1px solid var(--ws-border);
+    padding: 20px 0;
+    background: #fff;
+}
+
+.ws-footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ws-footer a {
+    color: var(--ws-muted);
+    text-decoration: none;
+}
+
+/* STEP 13 — Responsive tweaks */
+@media (max-width:960px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search {
+        grid-template-columns: 1fr;
+    }
+
+    .categories .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .workers {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .quotes {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* STEP 14 (optional) — Fancy hero background flair
+.hero{
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #e9e7ff 0%, transparent 60%),
+    radial-gradient(1200px 600px at 90% 10%, #d6fff7 0%, transparent 60%),
+    var(--ws-bg);
+}
+*/

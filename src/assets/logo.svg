@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WorkSy logomark">
+<defs>
+<linearGradient id="wsGradPrimary2" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#6c5ce7"/>
+<stop offset="100%" stop-color="#4c46d4"/>
+</linearGradient>
+</defs>
+<circle cx="32" cy="32" r="28" fill="url(#wsGradPrimary2)"/>
+<polyline points="14,22 22,42 32,26 42,42 50,22" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="26,36 32,42 44,28" fill="none" stroke="#00c2a8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

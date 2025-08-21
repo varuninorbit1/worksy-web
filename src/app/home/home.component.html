@@ -1,0 +1,171 @@
+<header class="ws-header">
+    <div class="container">
+        <div class="brand">
+            <img src="assets/logo.svg" alt="WorkSy" class="logo" />
+            <span class="title">WorkSy</span>
+        </div>
+        <nav class="nav">
+            <a routerLink="/" class="active">Home</a>
+            <a routerLink="/find">Find Workers</a>
+            <a routerLink="/post-job">Post a Job</a>
+            <a routerLink="/login" class="btn btn-light">Login</a>
+            <a routerLink="/signup" class="btn btn-primary">Sign Up</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <h1>Find trusted <span class="accent">skilled workers</span> near you</h1>
+            <p>Verified profiles · Ratings & reviews · Instant booking · Transparent pricing</p>
+
+
+            <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search">
+                <div class="field">
+                    <span class="icon">🔍</span>
+                    <input type="text" placeholder="Search e.g. electrician, plumber..." formControlName="q" />
+                </div>
+                <div class="field">
+                    <span class="icon">📍</span>
+                    <input type="text" placeholder="Location e.g. Noida, Delhi..." formControlName="location" />
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
+
+            <div class="quick-tags">
+                <button class="tag">Plumber</button>
+                <button class="tag">Electrician</button>
+                <button class="tag">Carpenter</button>
+                <button class="tag">Painter</button>
+            </div>
+        </div>
+        <div class="hero-art">
+            <div class="card stat">
+                <div class="stat-num">10k+</div>
+                <div class="stat-label">Verified workers</div>
+            </div>
+            <div class="card stat">
+                <div class="stat-num">4.7★</div>
+                <div class="stat-label">Avg. rating</div>
+            </div>
+            <img src="assets/illustrations/home-hero.svg" alt="People finding workers" />
+        </div>
+    </div>
+</section>
+
+<section class="categories">
+    <div class="container">
+        <div class="section-head">
+            <h2>Popular Categories</h2>
+            <a routerLink="/categories" class="link">View all →</a>
+        </div>
+
+
+        <div class="grid">
+            <a class="cat-card" *ngFor="let c of categories" [routerLink]="['/find']"
+                [queryParams]="{ category: c.key }">
+                <div class="icon">{{ c.icon }}</div>
+                <div class="name">{{ c.name }}</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="featured">
+    <div class="container">
+        <div class="section-head">
+            <h2>Featured Professionals</h2>
+            <a routerLink="/find" class="link">Browse more →</a>
+        </div>
+
+
+        <div class="grid workers">
+            <div class="worker-card" *ngFor="let w of featuredWorkers">
+                <div class="avatar" [style.backgroundImage]="'url(' + w.img + ')'" aria-hidden="true"></div>
+                <div class="info">
+                    <div class="top">
+                        <h3>{{ w.name }}</h3>
+                        <span class="rating">★ {{ w.rating }}</span>
+                    </div>
+                    <p class="meta">{{ w.skill }} · {{ w.jobs }} jobs · {{ w.location }}</p>
+                    <div class="bottom">
+                        <div class="price">₹ {{ w.price }} <span>/ visit</span></div>
+                        <a [routerLink]="['/worker', w.id]" class="btn btn-light">View</a>
+                        <a [routerLink]="['/book', w.id]" class="btn btn-primary">Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how">
+    <div class="container">
+        <div class="section-head center">
+            <h2>How WorkSy Works</h2>
+        </div>
+        <div class="grid steps">
+            <div class="step">
+                <div class="bubble">1</div>
+                <h3>Search</h3>
+                <p>Enter the service and your location to see verified profiles.</p>
+            </div>
+            <div class="step">
+                <div class="bubble">2</div>
+                <h3>Compare</h3>
+                <p>Check ratings, prices, and availability to pick the best fit.</p>
+            </div>
+            <div class="step">
+                <div class="bubble">3</div>
+                <h3>Book</h3>
+                <p>Schedule instantly and chat to confirm details.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <div class="section-head">
+            <h2>Loved by Users</h2>
+        </div>
+
+
+        <div class="grid quotes">
+            <blockquote class="quote" *ngFor="let t of testimonials">
+                <p>“{{ t.text }}”</p>
+                <footer>— {{ t.name }}, {{ t.location }}</footer>
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container cta-box">
+        <div>
+            <h2>Are you a skilled worker?</h2>
+            <p>Join WorkSy to reach more customers and grow your business.</p>
+        </div>
+        <a routerLink="/signup" class="btn btn-primary btn-lg">Register as Professional</a>
+    </div>
+</section>
+
+<footer class="ws-footer">
+    <div class="container">
+        <div class="left">
+            <div class="brand">
+                <img src="assets/logo.svg" class="logo" alt="WorkSy" />
+                <span class="title">WorkSy</span>
+            </div>
+            <p>Connecting urban India with trusted skilled professionals.</p>
+        </div>
+        <div class="right">
+            <a routerLink="/about">About</a>
+            <a routerLink="/privacy">Privacy</a>
+            <a routerLink="/terms">Terms</a>
+            <a routerLink="/contact">Contact</a>
+        </div>
+    </div>
+</footer>

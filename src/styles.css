@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== WorkSy theme (Bootstrap 5.3+ supports CSS vars) ===== */
+:root {
+--bs-primary: #0ea5e9; /* sky */
+--bs-primary-rgb: 14,165,233;
+--bs-secondary: #6b7280; /* slate */
+--bs-secondary-rgb: 107,114,128;
+--bs-warning: #f59e0b; /* amber */
+--bs-warning-rgb: 245,158,11;
+--bs-success: #22c55e; /* green */
+--bs-success-rgb: 34,197,94;
+--bs-dark: #0f172a; /* deep slate */
+--bs-body-bg: #ffffff;
+--bs-body-color: #0f172a;
+}
+
+
+/* Utilities */
+.object-fit-cover { object-fit: cover; }
+.ratio-4x3 { aspect-ratio: 4/3; }
+.ratio-16x9 { aspect-ratio: 16/9; }
+.scroll-x { overflow-x: auto; }

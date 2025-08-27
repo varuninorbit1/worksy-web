@@ -1,0 +1,10 @@
+:host { display: block; }
+
+
+/* Smooth hover on cards */
+.card { transition: transform .15s ease, box-shadow .15s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.08); }
+
+
+/* Make the top pros scroller work nicely on mobile */
+.scroll-x { -webkit-overflow-scrolling: touch; }

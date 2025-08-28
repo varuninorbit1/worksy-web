@@ -1,0 +1,2 @@
+The shared folder is for code that is reused across multiple modules or components — things that are not tied to one specific feature.
+Instead of duplicating code in different places, you put it once in shared/ and import it everywhere.

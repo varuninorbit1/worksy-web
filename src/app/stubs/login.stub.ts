@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
   {
     selector: 'app-login-stub',
     standalone: true,
-    template: '<div class="container py-5"><h1 class="h3">Login</h1><p class="text-secondary">Stub page</p></div>'
+    templateUrl:'login.component.html'
   })
 export class LoginStubComponent { }

@@ -2,10 +2,12 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { UserApi } from './user-api';
+import { AuthResponse } from './interface/auth-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   //window = inject(Window);
+  authResponse: any
   api = new UserApi(environment.api_base); // e.g., http://localhost:8000/api
    constructor() {
     // Expose this service instance globally for debugging
@@ -14,13 +16,13 @@ export class AuthService {
 
   get isAuthed() { return !!this.api.token; }
   login(email: string, password: string) {
-    return this.api.login(email, password);
+    return this.authResponse = this.api.login(email, password);
   }
   register(name: string, email: string, password: string) {
     return this.api.register(name, email, password);
   }
 
-  // me() { return this.api.me(); }
+  me() { return this.authResponse; }
 
   logout() { return this.api.logout(); }
 

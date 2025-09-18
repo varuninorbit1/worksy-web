@@ -21,7 +21,6 @@ export class LoginStubComponent {
   constructor(private fb: FormBuilder,
     private auth: AuthService,
     private router: Router) {
-      (window as any)['loginComp'] = this; // for easier debugging
     }
 
 

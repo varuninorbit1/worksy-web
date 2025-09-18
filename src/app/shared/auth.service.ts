@@ -8,7 +8,7 @@ import { AuthResponse } from './interface/auth-response.interface';
 export class AuthService {
   //window = inject(Window);
   authResponse: any
-  api = new UserApi(environment.api_base); // e.g., http://localhost:8000/api
+  api = new UserApi(environment.Urls.apiBase); // e.g., http://localhost:8000/api
    constructor() {
     // Expose this service instance globally for debugging
     (window as any)['auth'] = this;

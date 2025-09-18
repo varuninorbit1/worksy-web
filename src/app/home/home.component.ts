@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { Action2Service } from '../services/action2.service';
+import { easyDebug } from '../../decorator/easy-debug.decorator';
 
 
 interface Category { slug: string; name: string; subtitle: string; icon: string; img: string; }
 interface Pro { id: number; name: string; trade: string; city: string; rating: number; price: number; img: string; }
 
-
+@easyDebug()
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -16,7 +18,7 @@ interface Pro { id: number; name: string; trade: string; city: string; rating: n
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ac : Action2Service) { }
 
 
   year = new Date().getFullYear();

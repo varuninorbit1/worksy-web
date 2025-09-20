@@ -14,8 +14,8 @@ export class JobHierarchyService {
           name: 'Outdoor Cleaning',
           slug: 'outdoor-cleaning',
           tasks: [
-            { name: 'Water Tank Cleaning', slug: 'water-tank-cleaning' },
-            { name: 'Terrace / Roof Cleaning', slug: 'terrace-roof-cleaning' }
+            { name: 'Water Tank Cleaning', slug: 'water-tank-cleaning' , id:'1'},
+            { name: 'Terrace / Roof Cleaning', slug: 'terrace-roof-cleaning', id:'2' }
           ]
         }
       ]
@@ -28,8 +28,8 @@ export class JobHierarchyService {
           name: 'Tap & Faucet',
           slug: 'tap-faucet',
           tasks: [
-            { name: 'Tap Repair', slug: 'tap-repair' },
-            { name: 'Tap Replacement', slug: 'tap-replacement' }
+            { name: 'Tap Repair', slug: 'tap-repair', id:'3' },
+            { name: 'Tap Replacement', slug: 'tap-replacement' ,id:'4'}
           ]
         }
       ]

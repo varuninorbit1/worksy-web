@@ -63,6 +63,8 @@ export class JobChoiceComponent {
         category: this.selectedCategory()?.category||'',
         subcategory: this.selectedSubcategory()?.name||'',
         task: job.name,
+        id: String(this.selectedTask()?.id || '0'),
+        state: 'created',
         slugs: {
           category: this.selectedCategory()?.slug ||'',
           subcategory: this.selectedSubcategory()?.slug ||'',

@@ -13,6 +13,7 @@ import { JobDetails, DEFAULT_JOB_DETAILS } from '../../shared/interface/job-deta
         <li><strong>Category:</strong> {{ jobDetails.category }}</li>
         <li><strong>Subcategory:</strong> {{ jobDetails.subcategory }}</li>
         <li><strong>Task:</strong> {{ jobDetails.task }}</li>
+        <li><strong>Task ID</strong> {{ jobDetails.id }}</li>
       </ul>
 
       <div class="mt-3">

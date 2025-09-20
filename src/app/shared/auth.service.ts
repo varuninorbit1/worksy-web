@@ -4,18 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { User } from './interface/user.interface';
+import { AuthResponse } from './interface/auth-response.interface';
 
-export interface User {
-  id: number | string;
-  name: string;
-  email: string;
-  // add other fields as your API returns
-}
 
-export interface AuthResponse {
-  user: User;
-  token: string;
-}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -89,10 +81,11 @@ export class AuthService {
   }
 
   logout(): Observable<unknown> {
+    this.reset();
     return this.http.post(
       `${this.baseUrl}/logout`, {},
       { headers: this.authHeaders() }
-    ).pipe(tap(() => this.reset()));
+    ); //.pipe(tap(() => this.reset()));
   }
 
   /** Optional protected text endpoint example */

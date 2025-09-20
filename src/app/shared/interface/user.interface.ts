@@ -2,9 +2,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
-  email_verified_at: string | null;
-  role: string;
-  created_at: string;
-  updated_at: string;
+  role: 'guest' | 'customer' | 'worker' | 'admin' ; // You can expand this union type based on valid roles
+  created_at: string; // ISO 8601 timestamp
+  updated_at: string; // ISO 8601 timestamp
 }
-

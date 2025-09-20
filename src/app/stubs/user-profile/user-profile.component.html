@@ -1,0 +1,66 @@
+<div class="card shadow-sm p-3 rounded-3 m-5">
+  <div class="d-flex align-items-center gap-3 mb-3">
+    <div
+      class="avatar flex-shrink-0 d-inline-flex justify-content-center align-items-center"
+      [class.skeleton]="loading()">
+      @if (!loading()) {
+        {{ initials(user()?.name ?? null) }}
+      }
+    </div>
+
+    <div class="flex-grow-1">
+      @if (!loading()) {
+        <h5 class="mb-0">
+          @if (user(); as u) { {{ u.name }} } @else { — }
+        </h5>
+      } @else {
+        <div class="skeleton-line w-50"></div>
+      }
+
+      @if (!loading()) {
+        <div class="text-muted small mt-1">
+          <i class="bi bi-envelope me-1"></i>
+          @if (user(); as u) { {{ u.email }} } @else { — }
+        </div>
+      } @else {
+        <div class="skeleton-line w-75"></div>
+      }
+    </div>
+
+    <div class="ms-auto">
+      <button class="btn btn-sm btn-outline-secondary" (click)="refresh()" [disabled]="loading()">
+        <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+      </button>
+    </div>
+  </div>
+
+  @if (error()) {
+    <div class="alert alert-danger py-2 px-3 mb-0">
+      <i class="bi bi-exclamation-triangle me-2"></i>{{ error() }}
+    </div>
+  } @else {
+    @if (user(); as u) {
+      <h6 class="mt-2">Account</h6>
+      <ul class="list-unstyled mb-0">
+        <li class="mb-1">
+          <strong>User ID:</strong> <span class="text-muted">{{ u.id }}</span>
+        </li>
+        <li class="mb-1">
+          <strong>Role:</strong>
+          <span class="badge ms-1" [class]="roleBadgeClass(u.role)">{{ u.role }}</span>
+        </li>
+        <li class="mb-1">
+          <strong>Joined:</strong>
+          <span>{{ u.created_at | date:'mediumDate' }}</span>
+        </li>
+        <li class="mb-1">
+          <strong>Updated:</strong>
+          <span>{{ u.updated_at | date:'medium' }}</span>
+        </li>
+      </ul>
+    } @else {
+      <!-- Empty state when no user but also no error -->
+      <div class="text-muted small">No profile data.</div>
+    }
+  }
+</div>

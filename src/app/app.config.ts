@@ -5,6 +5,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { authTokenInterceptor } from './interceptors/auth-token.interceptor'; // <-- the HttpInterceptorFn
+import { authUnauthorizedInterceptor } from './interceptors/auth-unauthorized.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     // Register the functional interceptor here:
-    provideHttpClient(withInterceptors([authTokenInterceptor])),
+    provideHttpClient(withInterceptors([authTokenInterceptor,authUnauthorizedInterceptor])),
   ]
 };

@@ -3,7 +3,9 @@ import { Component, computed, signal } from '@angular/core';
 import { JobHierarchyService } from '../../services/job-hierarchy.service';
 import { WorksyCategory, WorksySubcategory, WorksyTask } from '../../shared/interface/job-hierarchy.interface';
 import { CommonModule } from '@angular/common';
+import { easyDebug } from '../../../decorator/easy-debug.decorator';
 
+@easyDebug()
 @Component({
   selector: 'app-job-choice',
   templateUrl: './job-choice.component.html',

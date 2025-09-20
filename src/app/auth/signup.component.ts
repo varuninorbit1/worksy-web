@@ -10,6 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
+import { easyDebug } from '../../decorator/easy-debug.decorator';
 
 function passwordsMatch(group: AbstractControl): ValidationErrors | null {
   const pw = group.get('password')?.value;
@@ -17,6 +18,7 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
   return pw && cpw && pw !== cpw ? { passwordsMismatch: true } : null;
 }
 
+@easyDebug()
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -43,6 +45,7 @@ export class SignupComponent {
         { validators: [passwordsMatch] }
       )
     });
+    debugger
   }
 
   get f() { return this.form.controls; }

@@ -1,15 +1,18 @@
 // src/app/auth/login.component.ts
 import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { CommonModule } from '@angular/common';
+import { easyDebug } from '../../decorator/easy-debug.decorator';
+
+@easyDebug()
 @Component(
   {
     selector: 'app-login-stub',
     standalone: true,
     templateUrl: 'login.component.html',
-    imports: [ReactiveFormsModule, CommonModule]
+    imports: [ReactiveFormsModule, CommonModule, RouterLink]
   })
 export class LoginStubComponent {
   submitted = false;

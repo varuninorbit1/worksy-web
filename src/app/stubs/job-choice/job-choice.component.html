@@ -1,0 +1,46 @@
+<!-- job-choice.component.html -->
+<div class="job-choice" style="display:grid; gap:12px; max-width:560px;">
+  <!-- Category -->
+  <label>
+    Category:
+    <select [value]="selectedCategory()?.slug ?? ''" (change)="onCategoryChange($event)">
+      <option value="" disabled selected>Select category</option>
+      <option *ngFor="let c of categories()" [value]="c.slug || c.category">
+        {{ c.category }}
+      </option>
+    </select>
+  </label>
+
+  <!-- Subcategory -->
+  <label>
+    Subcategory:
+    <select [disabled]="!selectedCategory()" [value]="selectedSubcategory()?.slug ?? ''"
+      (change)="onSubcategoryChange($event)">
+      <option value="" disabled selected>Select subcategory</option>
+      <option *ngFor="let s of subcategories()" [value]="s.slug || s.name">
+        {{ s.name }}
+      </option>
+    </select>
+  </label>
+
+  <!-- Task -->
+  <label>
+    Task:
+    <select [disabled]="!selectedSubcategory()" [value]="selectedTask()?.slug ?? ''" (change)="onTaskChange($event)">
+      <option value="" disabled selected>Select task</option>
+      @for (t of tasks(); track t) {
+      <option [value]="t.slug || t.name">
+        {{ t.name }}
+      </option>
+      }
+
+    </select>
+
+    @if (selectedTask()) {
+    <button type="button" class="ws-btn" (click)="selectedJob(selectedTask()!)">
+      Create Job
+    </button>
+    }
+
+  </label>
+</div>

@@ -41,6 +41,8 @@
   grid-template-columns: 1fr;
   gap: var(--ws-gap);
   max-width: 720px;
+  margin: 10%;
+  padding: 5%;
 }
 
 /* Each field group */
@@ -143,3 +145,22 @@
 :host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__notch {
   border-radius: 10px;
 }
+
+
+.ws-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in oklab, var(--ws-primary, #3b82f6), #fff 25%);
+  border-radius: 10px;
+  background: var(--ws-primary, #3b82f6);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 160ms ease, opacity 120ms ease;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+.ws-btn:hover { transform: translateY(-1px); }
+.ws-btn:active { transform: translateY(0); opacity: 0.95; }
+.ws-btn:disabled { opacity: 0.6; cursor: not-allowed; }

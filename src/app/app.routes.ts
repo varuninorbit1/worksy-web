@@ -22,11 +22,11 @@ export const routes: Routes = [
   { path: 'job-choice', loadComponent: () => import('./stubs/job-choice/job-choice.component').then(m => m.JobChoiceComponent) },
 
   // ✅ Profile page
-  {
-    path: 'profile',
-    canActivate: [authMatchGuard], // restrict only to logged-in users
-    loadComponent: () => import('./stubs/user-profile/user-profile.component').then(m => m.UserProfileComponent)
-  },
+  // {
+  //   path: 'profile',
+  //   canActivate: [authMatchGuard], // restrict only to logged-in users
+  //   loadComponent: () => import('./stubs/user-profile/user-profile.component').then(m => m.UserProfileComponent)
+  // },
 
   // Wildcard → redirect to home (optional)
   { path: '**', redirectTo: '' }

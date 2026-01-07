@@ -71,5 +71,7 @@ export class JobChoiceComponent {
           task: job?.slug||''
         }
       }
+
+      console.log('Selected Job Details:', this.jobDetails);
   }
 }

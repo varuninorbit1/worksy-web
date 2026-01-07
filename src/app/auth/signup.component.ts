@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { easyDebug } from '../../decorator/easy-debug.decorator';
+import { firstValueFrom } from 'rxjs';
 
 function passwordsMatch(group: AbstractControl): ValidationErrors | null {
   const pw = group.get('password')?.value;
@@ -53,27 +54,36 @@ export class SignupComponent {
   get passwordCtrl() { return this.passwordGroup.get('password'); }
   get confirmPasswordCtrl() { return this.passwordGroup.get('confirmPassword'); }
 
-  async onSubmit() {
-    this.submitted = true;
-    this.error.set(null);
-    if (this.form.invalid) return;
+async onSubmit() {
+  this.submitted = true;
+  this.error.set(null);
 
-    const name = this.f['name'].value!;
-    const email = this.f['email'].value!;
-    const password = this.passwordCtrl?.value!;
+  if (this.form.invalid) return;
 
-    this.loading.set(true);
-    try {
-      const res: any = await this.auth.register(name, email, password);
-      if (res?.token || res?.user) {
-        this.router.navigateByUrl('/');
-      } else {
-        this.error.set(res?.message || 'Sign up failed. Please try again.');
-      }
-    } catch (e: any) {
-      this.error.set(e?.message || 'Sign up failed. Please try again.');
-    } finally {
-      this.loading.set(false);
-    }
+  const name = this.f['name'].value;
+  const email = this.f['email'].value;
+  const password = this.passwordCtrl?.value;
+
+  this.loading.set(true);
+
+  try {
+    const res = await firstValueFrom(
+      this.auth.register(name, email, password)
+    );
+
+    console.log('Signup response:', res); // 👈 REAL RESPONSE
+
+    this.router.navigateByUrl('/');
+  } catch (e: any) {
+    console.error('Signup error:', e);
+
+    this.error.set(
+      e.error?.message ||
+      JSON.stringify(e.error?.errors) ||
+      'Sign up failed. Please try again.'
+    );
+  } finally {
+    this.loading.set(false);
   }
+}
 }

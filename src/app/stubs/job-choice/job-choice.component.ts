@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { easyDebug } from '../../../decorator/easy-debug.decorator';
 import { JobDetailsComponent } from "../job-details/job-details.component";
 import { DEFAULT_JOB_DETAILS, JobDetails } from '../../shared/interface/job-details.model';
+import { Action2Service } from '../../services/action2.service';
 
 @easyDebug()
 @Component({
@@ -30,7 +31,7 @@ export class JobChoiceComponent {
 
   jobDetails: JobDetails
 
-  constructor(private svc: JobHierarchyService) {
+  constructor(private svc: JobHierarchyService, private ac: Action2Service) {
     this.categories = this.svc.categoriesSignal;
     this.jobDetails = DEFAULT_JOB_DETAILS;
   }
@@ -60,18 +61,24 @@ export class JobChoiceComponent {
   // ✅ Success criteria: called at the end, logs structured payload
   selectedJob(job: WorksyTask) {
     this.jobDetails = {
-        category: this.selectedCategory()?.category||'',
-        subcategory: this.selectedSubcategory()?.name||'',
-        task: job.name,
-        id: String(this.selectedTask()?.id || '0'),
-        state: 'created',
-        slugs: {
-          category: this.selectedCategory()?.slug ||'',
-          subcategory: this.selectedSubcategory()?.slug ||'',
-          task: job?.slug||''
-        }
+      category: this.selectedCategory()?.category || '',
+      subcategory: this.selectedSubcategory()?.name || '',
+      task: job.name,
+      id: String(this.selectedTask()?.id || '0'),
+      state: 'created',
+      slugs: {
+        category: this.selectedCategory()?.slug || '',
+        subcategory: this.selectedSubcategory()?.slug || '',
+        task: job?.slug || ''
       }
+    }
 
-      console.log('Selected Job Details:', this.jobDetails);
+    // working ac2 service
+    this.ac.post({ keyval: true })
+      ('SomeAction.request')
+      (this.jobDetails)
+      .subscribe(r => console.log(r))
+
+    console.log('Selected Job Details:', this.jobDetails);
   }
 }

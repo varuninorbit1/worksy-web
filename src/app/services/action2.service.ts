@@ -106,7 +106,7 @@ export class Action2Service {
           this.parseQueryString(h.query).appendAll(this.parseQueryString(h.everyQuery).keys()
             .reduce((acc, k) => (acc[k] = this.parseQueryString(h.everyQuery).get(k)!, acc), {} as any));
         if (h.keyval) {
-          return (body: KeyVal): Observable<T> =>
+          return (body: any): Observable<T> =>
             this.http.post<T>(`${base}/keyval`, body ?? {}, {
               params: baseParams, headers:
                 h.headers

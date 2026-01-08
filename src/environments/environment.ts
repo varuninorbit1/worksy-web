@@ -6,6 +6,11 @@ export const environment = {
     everyQuery: '',
   }
   // keep empty; we use header auth now
-
+  ,
+  AuthUrls: {
+    apiBase: 'http://worksy.local:8080/api',
+    relativeURL: '/authi/',   // change to 'api/authi/' when needed
+    everyQuery: '',
+  }
 };
 export type Urls = typeof environment.Urls;

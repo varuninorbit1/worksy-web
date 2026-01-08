@@ -74,8 +74,8 @@ export class JobChoiceComponent {
     }
 
     // working ac2 service
-    this.ac.post({ keyval: true })
-      ('SomeAction.request')
+    this.ac.post({ keyval: true, relativeURL:'/authi/' })
+      ('jobAction.createJob')
       (this.jobDetails)
       .subscribe(r => console.log(r))
 

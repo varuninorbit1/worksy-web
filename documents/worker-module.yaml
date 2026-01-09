@@ -1,0 +1,24 @@
+progress_log:
+  - date: 2026-01-09
+    area: worksy-web (Angular)
+    feature: Worker Module (Frontend)
+    status: architecture-initialized
+    details:
+      - Created worker feature boundary under src/app/worker
+      - Added standalone components:
+          - WorkerDashboardComponent
+          - WorkerJobDetailsComponent
+      - Implemented lazy-loaded worker routes:
+          - /worker/dashboard
+          - /worker/jobs/:id
+      - Added feature-scoped guard:
+          - worker.guard.ts (currently permissive; role logic deferred)
+      - Integrated with existing authGuard (no duplication of auth logic)
+      - Added worker-jobs.service.ts placeholder
+      - Added navigation link from Home to Worker Dashboard
+      - Followed Angular 20 standalone + lazy loading conventions
+    notes:
+      - No API wiring yet
+      - No role enforcement yet
+      - UI intentionally kept skeletal
+      - Structure saved as canonical reference

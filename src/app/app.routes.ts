@@ -5,6 +5,13 @@ import { authMatchGuard } from './guard/auth.guard';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
 
+   {
+    path: 'worker',
+    loadChildren: () =>
+      import('./worker/worker.routes')
+        .then(m => m.WORKER_ROUTES),
+  },
+
   // Auth
   { path: 'login', loadComponent: () => import('./stubs/login.stub').then(m => m.LoginStubComponent) },
   { path: 'signup', loadComponent: () => import('./auth/signup.component').then(m => m.SignupComponent) },

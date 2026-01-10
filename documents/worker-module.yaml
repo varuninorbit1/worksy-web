@@ -2,23 +2,33 @@ progress_log:
   - date: 2026-01-09
     area: worksy-web (Angular)
     feature: Worker Module (Frontend)
-    status: architecture-initialized
+    status: api-integrated
     details:
-      - Created worker feature boundary under src/app/worker
-      - Added standalone components:
-          - WorkerDashboardComponent
-          - WorkerJobDetailsComponent
-      - Implemented lazy-loaded worker routes:
-          - /worker/dashboard
-          - /worker/jobs/:id
-      - Added feature-scoped guard:
-          - worker.guard.ts (currently permissive; role logic deferred)
-      - Integrated with existing authGuard (no duplication of auth logic)
-      - Added worker-jobs.service.ts placeholder
-      - Added navigation link from Home to Worker Dashboard
-      - Followed Angular 20 standalone + lazy loading conventions
+      - Replaced static mock data in WorkerDashboardComponent with live backend data
+      - Integrated backend API:
+          - action: jobAction.workerJobs
+          - endpoint base: /authi/
+      - Implemented API-driven job listing:
+          - jobs array now populated from backend response
+          - frontend expects UI-ready view-model (no parsing/mapping)
+      - Resolved Angular 20 deprecations:
+          - Migrated *ngFor to @for syntax
+          - Ensured proper track expression usage
+      - Implemented job card navigation:
+          - Clicking job card routes to /worker/jobs/:jobId
+      - Integrated WorkerJobDetailsComponent with backend:
+          - Reads jobId from route params
+          - Fetches job details using jobAction.jobDetails
+          - Handles loading and error states safely
+      - Coordinated backend changes:
+          - Fixed double-encoded JSON issue in job details response
+          - Standardized backend job list response to match WorkerJob interface
+      - Added frontend-safe API typing:
+          - JobListApiResponse
+          - WorkerJob
+      - Maintained Angular 20 standalone component conventions
     notes:
-      - No API wiring yet
-      - No role enforcement yet
-      - UI intentionally kept skeletal
-      - Structure saved as canonical reference
+      - API error handling implemented but UI retry not yet added
+      - Pagination and worker-specific filtering pending
+      - Role enforcement deferred to worker.guard enhancement
+      - Dashboard UI remains intentionally minimal (focus on data flow correctness)

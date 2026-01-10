@@ -1,7 +1,66 @@
-<section class="worker-job-details">
-  <h2>Job Details</h2>
+<div class="container py-4">
 
-  <!-- Job information will go here -->
+  <h3>Job Details</h3>
 
-  <!-- Action buttons will go here -->
-</section>
+  @if (loading) {
+  <div class="alert alert-secondary">
+    Loading job details...
+  </div>
+  }
+
+  @if (error) {
+  <div class="alert alert-danger">
+    {{ error }}
+  </div>
+  }
+
+  @if (!loading && jobDetails) {
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h5 class="mb-3 text-capitalize">
+        {{ jobDetails.task.replace('-', ' ') }}
+      </h5>
+
+      <ul class="list-unstyled">
+        <li>
+          <strong>Category:</strong>
+          {{ jobDetails.category }}
+        </li>
+        <li>
+          <strong>Subcategory:</strong>
+          {{ jobDetails.subcategory }}
+        </li>
+        <li>
+          <strong>Task:</strong>
+          {{ jobDetails.task }}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  }
+
+@if (!loading && jobDetails) {
+
+  <button
+    class="btn btn-success"
+    (click)="acceptJob()"
+    [disabled]="accepting || jobDetails.status === 'accepted'"
+  >
+    @if (accepting) {
+      Accepting...
+    } @else {
+      Accept Job
+    }
+  </button>
+
+}
+
+
+  @if (jobDetails?.status === 'accepted') {
+  <span class="badge text-bg-success ms-2">Accepted</span>
+}
+
+
+</div>

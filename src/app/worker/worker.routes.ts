@@ -14,7 +14,7 @@ export const WORKER_ROUTES: Routes = [
             .then(m => m.WorkerDashboardComponent)
       },
       {
-        path: 'jobs/:id',
+        path: 'jobs/:jobId',
         loadComponent: () =>
           import('./job-details/worker-job-details.component')
             .then(m => m.WorkerJobDetailsComponent)

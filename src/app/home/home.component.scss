@@ -8,3 +8,10 @@
 
 /* Make the top pros scroller work nicely on mobile */
 .scroll-x { -webkit-overflow-scrolling: touch; }
+
+.service-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain; // important for illustrations
+}

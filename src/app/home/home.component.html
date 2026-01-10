@@ -22,7 +22,7 @@
       </div>
       <div class="col-lg-5">
         <div class="ratio-16x9 rounded overflow-hidden shadow-sm">
-          <img class="w-100 h-100 object-fit-cover" src="https://picsum.photos/seed/worksy-hero/1200/700"
+          <img class="w-100 h-100 object-fit-cover" src="services/hero.jpeg"
             alt="WorkSy hero" />
         </div>
       </div>
@@ -40,7 +40,8 @@
       <div class="col-6 col-md-4 col-lg-3" *ngFor="let c of categories">
         <div class="card h-100 border-0 shadow-sm">
           <div class="ratio-4x3">
-            <img class="card-img-top w-100 h-100 object-fit-cover" [src]="c.img" [alt]="c.name" />
+            <img class="card-img-top w-100 h-100 object-fit-cover"
+            [src]="c.img" [alt]="c.name" class="service-image"/>
           </div>
           <div class="card-body">
             <div class="d-flex align-items-center mb-1">
@@ -120,7 +121,5 @@
     <a routerLink="/signup" class="btn btn-light btn-lg"><i class="bi bi-person-plus me-1"></i>Create account</a>
   </div>
 </section>
-
-
 
 

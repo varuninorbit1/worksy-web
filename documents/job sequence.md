@@ -6,3 +6,5 @@
 3 started: worker starts the job
 4 ended: user end the job
 5 archived: user and worker gives feedback
+
+discuss the road map to implement this. no code needed at this time

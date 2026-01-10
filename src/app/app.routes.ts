@@ -5,7 +5,7 @@ import { authMatchGuard } from './guard/auth.guard';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
 
-   {
+  {
     path: 'worker',
     loadChildren: () =>
       import('./worker/worker.routes')
@@ -36,5 +36,13 @@ export const routes: Routes = [
   // },
 
   // Wildcard → redirect to home (optional)
+
+  {
+    path: 'notifications',
+    loadChildren: () =>
+      import('./notifications/notifications.routes'),
+  }
+  ,
+
   { path: '**', redirectTo: '' }
 ];

@@ -1,0 +1,32 @@
+<div class="container py-4">
+  <h2 class="mb-3">Notifications</h2>
+
+  @if (list.length === 0) {
+    <div class="text-muted">No notifications.</div>
+  } @else {
+
+    <ul class="list-group">
+      @for (n of list; track n.notif_id) {
+        <li class="list-group-item d-flex justify-content-between align-items-start"
+            [class.list-group-item-light]="n.status === 'read'"
+            (click)="markRead(n)"
+            style="cursor: pointer">
+
+          <div>
+            <div [class.fw-bold]="n.status === 'unread'">
+              {{ n.message }}
+            </div>
+            <small class="text-muted">
+              {{ n.created_at | date:'short' }}
+            </small>
+          </div>
+
+          @if (n.status === 'unread') {
+            <span class="badge bg-primary">new</span>
+          }
+        </li>
+      }
+    </ul>
+
+  }
+</div>

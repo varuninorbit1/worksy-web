@@ -3,64 +3,68 @@
   <h3>Job Details</h3>
 
   @if (loading) {
-  <div class="alert alert-secondary">
-    Loading job details...
-  </div>
+  <div class="alert alert-secondary">Loading job details...</div>
   }
 
   @if (error) {
-  <div class="alert alert-danger">
-    {{ error }}
-  </div>
+  <div class="alert alert-danger">{{ error }}</div>
   }
 
   @if (!loading && jobDetails) {
-  <div class="card shadow-sm">
+
+  <div class="card shadow-sm mb-3">
     <div class="card-body">
 
       <h5 class="mb-3 text-capitalize">
         {{ jobDetails.task.replace('-', ' ') }}
       </h5>
 
-      <ul class="list-unstyled">
-        <li>
-          <strong>Category:</strong>
-          {{ jobDetails.category }}
-        </li>
-        <li>
-          <strong>Subcategory:</strong>
-          {{ jobDetails.subcategory }}
-        </li>
-        <li>
-          <strong>Task:</strong>
-          {{ jobDetails.task }}
-        </li>
+      <ul class="list-unstyled mb-3">
+        <li><strong>Category:</strong> {{ jobDetails.category }}</li>
+        <li><strong>Subcategory:</strong> {{ jobDetails.subcategory }}</li>
+        <li><strong>Task:</strong> {{ jobDetails.task }}</li>
       </ul>
+
+      <!-- STATUS BADGES -->
+      <div class="mb-3">
+        @if (jobDetails.status === 'created') {
+        <span class="badge text-bg-secondary">New Job</span>
+        }
+        @if (jobDetails.status === 'accepted') {
+        <span class="badge text-bg-success">Accepted</span>
+        }
+        @if (jobDetails.status === 'ready') {
+        <span class="badge text-bg-primary">Payment Confirmed</span>
+        }
+        @if (jobDetails.status === 'started') {
+        <span class="badge text-bg-info">In Progress</span>
+        }
+        @if (jobDetails.status === 'ended') {
+        <span class="badge text-bg-dark">Completed</span>
+        }
+      </div>
+
+      <!-- ACTION BUTTONS -->
+
+      @if (jobDetails.status === 'created') {
+      <button class="btn btn-success" (click)="acceptJob()" [disabled]="processing">
+        @if (processing) { Accepting... } @else { Accept Job }
+      </button>
+      }
+
+      <!-- START JOB BUTTON (only when payment confirmed) -->
+      @if (jobDetails && jobDetails.status === 'ready') {
+      <button class="btn btn-primary" (click)="startJob()" [disabled]="processing">
+        @if (processing) {
+        Starting...
+        } @else {
+        Start Job
+        }
+      </button>
+      }
 
     </div>
   </div>
   }
-
-@if (!loading && jobDetails) {
-
-  <button
-    class="btn btn-success"
-    (click)="acceptJob()"
-    [disabled]="accepting || jobDetails.status === 'accepted'"
-  >
-    @if (accepting) {
-      Accepting...
-    } @else {
-      Accept Job
-    }
-  </button>
-
-}
-
-
-  @if (jobDetails?.status === 'accepted') {
-  <span class="badge text-bg-success ms-2">Accepted</span>
-}
-
 
 </div>

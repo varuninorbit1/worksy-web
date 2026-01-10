@@ -10,6 +10,13 @@ interface JobDetails {
   status: string;
 }
 
+type JobStatus =
+  | 'created'
+  | 'accepted'
+  | 'ready'
+  | 'started'
+  | 'ended';
+
 interface ApiResponse<T> {
   message: string;
   data: T;
@@ -24,15 +31,23 @@ interface ApiResponse<T> {
 
 export class CustomerJobDetailsComponent {
 
+  processing = false;
+  actionError: string | null = null;
+
+
   private route = inject(ActivatedRoute);
   private ac = inject(Action2Service);
 
   jobDetails: JobDetails | null = null;
   loading = true;
-  processing = false;
+
   error: string | null = null;
 
   ngOnInit(): void {
+    this.loadJobDetails();
+  }
+
+  loadJobDetails(): void {
     const jobId = Number(this.route.snapshot.paramMap.get('jobId'));
     this.fetchJob(jobId);
   }
@@ -76,4 +91,48 @@ export class CustomerJobDetailsComponent {
         }
       });
   }
+
+  makePayment(): void {
+    if (!this.jobDetails) return;
+
+    this.processing = true;
+    this.error = null;
+
+
+    // .post({ keyval: true, relativeURL: '/authi/' })
+    //   ('jobAction.jobDetails')
+    this.ac.post({ keyval: true, relativeURL: '/authi/' })
+      ('jobAction.readyJob')({
+        jobId: this.jobDetails.jobId
+      })
+      .subscribe(r => {
+        console.log(r);
+      });
+
+  }
+
+
+endJob(): void {
+  if (!this.jobDetails) return;
+
+  this.processing = true;
+  this.actionError = null;
+
+  this.ac
+    .post({ keyval: true, relativeURL: '/authi/' })
+    ('jobAction.endJob')({ jobId: this.jobDetails.jobId })
+    .subscribe({
+      next: () => {
+        this.processing = false;
+        this.loadJobDetails(); // refresh state
+      },
+      error: () => {
+        this.processing = false;
+        this.actionError = 'Failed to end job';
+      }
+    });
+}
+
+
+
 }

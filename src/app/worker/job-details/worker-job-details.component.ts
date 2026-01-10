@@ -3,7 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Action2Service } from '../../services/action2.service';
 
-type JobStatus = 'pending' | 'accepted' | 'completed';
+type JobStatus =
+  | 'created'
+  | 'accepted'
+  | 'ready'
+  | 'started'
+  | 'ended';
 
 interface WorkerJobDetails {
   category: string;
@@ -29,6 +34,7 @@ export class WorkerJobDetailsComponent {
   jobDetails: WorkerJobDetails | null = null;
   loading = true;
   error: string | null = null;
+  processing = false;
 
   accepting = false;
   acceptError: string | null = null;
@@ -55,7 +61,8 @@ export class WorkerJobDetailsComponent {
       .subscribe({
         next: (res: any) => {
           const apiRes = res as JobDetailsApiResponse;
-
+          //res = {category: 'plumber', subcategory: 'tap-faucet', task: 'tap-repair'}
+          //it is not having job status in response?
           console.log('Job details loaded:', apiRes.data);
 
           this.jobDetails = apiRes.data;
@@ -101,6 +108,28 @@ export class WorkerJobDetailsComponent {
         }
       });
   }
+
+  startJob(): void {
+    if (!this.jobId) return;
+
+    this.processing = true;
+    this.error = null;
+
+    this.ac
+      .post({ keyval: true, relativeURL: '/authi/' })
+      ('jobAction.startJob')({ jobId: this.jobId })
+      .subscribe({
+        next: () => {
+          this.processing = false;
+          this.loadJobDetails(); // refresh job state
+        },
+        error: () => {
+          this.processing = false;
+          this.error = 'Failed to start job';
+        }
+      });
+  }
+
 
 }
 

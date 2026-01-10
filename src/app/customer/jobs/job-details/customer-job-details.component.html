@@ -95,4 +95,38 @@
     </div>
   }
 
+  @if (jobDetails && jobDetails.status === 'accepted') {
+    <!-- @if (true) { -->
+  <button
+    class="btn btn-primary"
+    (click)="makePayment()"
+    [disabled]="processing"
+  >
+    @if (processing) {
+      Processing Payment...
+    } @else {
+      Make Payment
+    }
+  </button>
+}
+
+<!-- END JOB BUTTON (Customer only) -->
+@if (jobDetails && jobDetails.status === 'started') {
+  <div class="mt-3">
+    <button
+      class="btn btn-danger"
+      (click)="endJob()"
+      [disabled]="processing"
+    >
+      @if (processing) {
+        Ending Job...
+      } @else {
+        End Job
+      }
+    </button>
+  </div>
+}
+
+
+
 </div>

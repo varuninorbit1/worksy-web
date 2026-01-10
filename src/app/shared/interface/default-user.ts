@@ -6,5 +6,5 @@ export const defaultUser: User = {
     "email": "",
     "created_at": "",
     "updated_at": "",
-    "role": "guest" //guest, admin, worker, customer
+    "role_id": 0 //guest, admin, worker, customer
   }

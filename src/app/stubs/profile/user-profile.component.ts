@@ -41,12 +41,12 @@ export class UserProfileComponent {
       });
   }
 
-  roleBadgeClass(role: User['role'] | undefined): string {
+  roleBadgeClass(role: User['role_id'] | undefined): string {
     switch (role) {
-      case 'admin': return 'text-bg-danger';
-      case 'worker': return 'text-bg-primary';
-      case 'customer': return 'text-bg-success';
-      case 'guest': return 'text-bg-secondary';
+      case 1: return 'text-bg-danger';
+      case 3: return 'text-bg-primary';
+      case 2: return 'text-bg-success';
+      case 0: return 'text-bg-secondary';
       default: return 'text-bg-light';
     }
   }

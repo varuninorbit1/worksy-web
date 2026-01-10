@@ -1,0 +1,110 @@
+
+project: WorkSy
+module: Job Lifecycle & Notifications
+last_updated: 2026-01-10
+
+progress_log:
+  - date: 2026-01-10
+    area: Backend (Laravel – Authi Action Controllers)
+    feature: Job Lifecycle Core
+    status: completed
+    details:
+      - Implemented job state transitions:
+          - created → accepted
+          - accepted → ready
+          - ready → started
+          - started → ended
+      - Enforced strict state guards to prevent invalid transitions
+      - Added database-level transaction safety using DB::transaction
+      - Used row-level locking (lockForUpdate) to prevent race conditions
+      - Ensured idempotent operations for repeated API calls
+
+  - date: 2026-01-10
+    area: Backend (Laravel – Services)
+    feature: Notification Service
+    status: completed
+    details:
+      - Created NotificationService under app/Services
+      - Implemented notify() for basic notifications
+      - Implemented notifyOnce() with event_key for idempotency
+      - Linked notifications to job lifecycle events
+      - Added support for context_type and context_id
+      - Ensured notifications target users (not domain entities)
+
+  - date: 2026-01-10
+    area: Backend (Laravel – JobActionControllerAuthi)
+    feature: Notifications Integration
+    status: completed
+    details:
+      - Linked notification creation in createJob()
+      - Linked notification creation in acceptJob()
+      - Linked notification creation in readyJob()
+      - Linked notification creation in startJob()
+      - Linked notification creation in endJob()
+      - Verified foreign key integrity and role-based user resolution
+
+  - date: 2026-01-10
+    area: Backend (Development Utilities)
+    feature: Payment Simulation
+    status: completed
+    details:
+      - Added temporary web route to trigger readyJob()
+      - Used for simulating payment confirmation
+      - Marked as removable once payment gateway is integrated
+
+  - date: 2026-01-10
+    area: Frontend (Angular)
+    feature: Notifications UI
+    status: completed
+    details:
+      - Implemented notifications feature module
+      - Header notification badge wired to backend unread count
+      - Notification list page implemented
+      - Mark-as-read functionality implemented
+      - Context-ready navigation hooks prepared
+      - Angular 20 control flow (@if, @for) used consistently
+
+todo:
+  backend:
+    - feature: archiveJob
+      status: pending
+      reason: >
+        Archiving deferred until feedback submission and post-completion
+        verification flow is finalized.
+    - feature: payment_gateway
+      status: pending
+      notes:
+        - Replace temporary readyJob web route
+        - Trigger readyJob() from payment success callback
+    - feature: notification_cleanup
+      status: optional
+      notes:
+        - Bulk mark-as-read
+        - Optional notification expiry/cleanup
+
+  frontend:
+    - feature: job_timeline_ui
+      status: pending
+      notes:
+        - Visual timeline for job states (created → ended)
+        - Disable invalid actions based on state
+    - feature: contextual_navigation
+      status: pending
+      notes:
+        - Navigate from notification to job / feedback screen
+    - feature: realtime_updates
+      status: optional
+      notes:
+        - Polling or websocket-based notification refresh
+
+  documentation:
+    - feature: lifecycle_diagrams
+      status: pending
+      notes:
+        - Job lifecycle state diagram
+        - Notification flow diagram
+    - feature: project_report_writeup
+      status: pending
+      notes:
+        - IGNOU MCA project documentation
+        - Explain state guards, transactions, idempotency

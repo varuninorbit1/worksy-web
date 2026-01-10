@@ -1,0 +1,98 @@
+<div class="container py-4">
+
+  <h3>Job Details</h3>
+
+  @if (loading) {
+    <div class="alert alert-secondary">
+      Loading job details...
+    </div>
+  }
+
+  @if (error) {
+    <div class="alert alert-danger">
+      {{ error }}
+    </div>
+  }
+
+  @if (!loading && jobDetails) {
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+
+        <h5 class="mb-3 text-capitalize">
+          {{ jobDetails.task.replace('-', ' ') }}
+        </h5>
+
+        <ul class="list-unstyled mb-3">
+          <li>
+            <strong>Category:</strong>
+            {{ jobDetails.category }}
+          </li>
+          <li>
+            <strong>Subcategory:</strong>
+            {{ jobDetails.subcategory }}
+          </li>
+          <li>
+            <strong>Task:</strong>
+            {{ jobDetails.task }}
+          </li>
+        </ul>
+
+        <!-- STATUS BADGES (same style as worker side) -->
+        <div class="mb-3">
+          @if (jobDetails.status === 'created') {
+            <span class="badge text-bg-secondary">Created</span>
+          }
+
+          @if (jobDetails.status === 'accepted') {
+            <span class="badge text-bg-success">Accepted</span>
+          }
+
+          @if (jobDetails.status === 'ready') {
+            <span class="badge text-bg-primary">Payment Confirmed</span>
+          }
+
+          @if (jobDetails.status === 'started') {
+            <span class="badge text-bg-info">In Progress</span>
+          }
+
+          @if (jobDetails.status === 'ended') {
+            <span class="badge text-bg-dark">Completed</span>
+          }
+        </div>
+
+        <!-- CUSTOMER ACTIONS -->
+        @if (jobDetails.status === 'accepted') {
+          <button
+            class="btn btn-primary"
+            (click)="markReady()"
+            [disabled]="processing"
+          >
+            @if (processing) {
+              Processing...
+            } @else {
+              Confirm Payment
+            }
+          </button>
+        }
+
+        @if (jobDetails.status === 'started') {
+          <div class="alert alert-info mb-0">
+            The worker has started the job.
+          </div>
+        }
+
+        @if (jobDetails.status === 'ended') {
+          <button
+            class="btn btn-success"
+            routerLink="/feedback/{{ jobDetails.jobId }}"
+          >
+            Give Feedback
+          </button>
+        }
+
+      </div>
+    </div>
+  }
+
+</div>

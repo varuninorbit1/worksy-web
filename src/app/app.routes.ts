@@ -12,6 +12,14 @@ export const routes: Routes = [
         .then(m => m.WORKER_ROUTES),
   },
 
+  {
+  path: 'customer',
+  loadChildren: () =>
+    import('./customer/customer.routes')
+      .then(m => m.CUSTOMER_ROUTES)
+},
+
+
   // Auth
   { path: 'login', loadComponent: () => import('./stubs/login.stub').then(m => m.LoginStubComponent) },
   { path: 'signup', loadComponent: () => import('./auth/signup.component').then(m => m.SignupComponent) },

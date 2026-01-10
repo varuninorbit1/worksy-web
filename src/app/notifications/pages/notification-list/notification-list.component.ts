@@ -5,6 +5,7 @@ import {
   NotificationItem
 } from '../../services/notification.services';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../shared/auth.service';
 
 @Component({
   selector: 'app-notification-list',
@@ -16,6 +17,7 @@ export class NotificationListComponent implements OnInit {
 
   private readonly notifications = inject(NotificationsService);
   private readonly router = inject(Router);
+  private readonly auth = inject(AuthService);
 
   list: NotificationItem[] = [];
 
@@ -29,13 +31,17 @@ export class NotificationListComponent implements OnInit {
       this.notifications.markRead(n.notif_id);
     }
 
+    const user = this.auth.me();
+    if (!user) return;
+    debugger;
     switch (n.context_type) {
+
       case 'job':
-        this.router.navigate(['/jobs', n.context_id]);
+        this.navigateToJob(n.context_id!, user.role_id);
         break;
 
       case 'chat':
-        this.router.navigate(['/jobs', n.context_id, 'chat']);
+        this.navigateToJob(n.context_id!, user.role_id, 'chat');
         break;
 
       case 'payment':
@@ -47,8 +53,31 @@ export class NotificationListComponent implements OnInit {
         break;
 
       default:
-        // fallback: do nothing
         break;
+    }
+  }
+
+  private navigateToJob(
+    jobId: number,
+    roleId: number,
+    child?: string
+  ): void {
+
+    // role_id: 2 = customer, 3 = worker
+    if (roleId === 2) {
+      this.router.navigate(
+        child
+          ? ['/customer/jobs', jobId, child]
+          : ['/customer/jobs', jobId]
+      );
+    }
+
+    if (roleId === 3) {
+      this.router.navigate(
+        child
+          ? ['/worker/jobs', jobId, child]
+          : ['/worker/jobs', jobId]
+      );
     }
   }
 }
